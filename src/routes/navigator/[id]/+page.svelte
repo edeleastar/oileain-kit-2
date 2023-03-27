@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { page } from "$app/stores";
 	import IslandDescription from "$lib/IslandDescription.svelte";
 	import LeafletMap from "$lib/LeafletMap.svelte";
 	import type { PageData } from "./$types";
@@ -16,6 +17,13 @@
 		mapSat?.moveTo(marker.location, 14);
 		mapContext?.moveTo(marker.location, 10);
 	}
+
+	page.subscribe((path) => {
+		const marker = generateMarkerSpec(data.island);
+		mapTerrain?.addPopupMarkerAndZoom("selected", marker);
+		mapSat?.moveTo(marker.location, 14);
+		mapContext?.moveTo(marker.location, 10);
+	});
 
 	onMount(async () => {
 		zoomTo(generateMarkerSpec(data.island));
