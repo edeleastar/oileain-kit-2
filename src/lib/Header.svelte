@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
+	import { currentIsland } from "../services/stores";
 </script>
 
 <div class="columns is-vcentered">
@@ -10,6 +11,11 @@
 			</div>
 			<div class="column">
 				<div class="title">Oileain: Islands of Ireland</div>
+				{#if $currentIsland}
+					{@html $currentIsland?.nameHtml}
+				{:else}
+					<b> Select a marker to explore island...</b>
+				{/if}
 			</div>
 		</div>
 	</div>
