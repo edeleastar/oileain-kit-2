@@ -4,9 +4,21 @@
 	import LeafletMap from "$lib/LeafletMap.svelte";
 	import IslandLatLng from "$lib/IslandLatLng.svelte";
 	import IslandDescription from "$lib/IslandDescription.svelte";
+	import { markerSelected } from "../../services/stores";
+	import { generateMarkerSpec } from "../../services/oileain-utils";
+	import type { MarkerSpec } from "../../services/markers";
 	import type { Island } from "../../services/oileain-types";
+	import { oileainService } from "../../services/oileain-service";
 
 	let island: Island;
+	let navigator: LeafletMap;
+
+	markerSelected.subscribe(async (marker: MarkerSpec) => {
+		if (marker) {
+			island = await oileainService.getIslandById(marker.id);
+			navigator.addPopupMarkerAndZoom("selected", generateMarkerSpec(island));
+		}
+	});
 </script>
 
 <div class="columns">
@@ -17,7 +29,7 @@
 		{/if}
 	</div>
 	<div class="column">
-		<LeafletMap id="map-secondary" height={30} activeLayer="Satellite" />
+		<LeafletMap id="map-secondary" height={30} activeLayer="Satellite" bind:this={navigator} />
 		{#if island}
 			<IslandDescription {island} />
 		{/if}
