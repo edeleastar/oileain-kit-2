@@ -4,7 +4,7 @@
 	import LeafletMap from "$lib/LeafletMap.svelte";
 	import IslandLatLng from "$lib/IslandLatLng.svelte";
 	import IslandDescription from "$lib/IslandDescription.svelte";
-	import { markerSelected } from "../../services/stores";
+	import { currentIsland, markerSelected } from "../../services/stores";
 	import { generateMarkerSpec } from "../../services/oileain-utils";
 	import type { MarkerSpec } from "../../services/markers";
 	import type { Island } from "../../services/oileain-types";
@@ -16,6 +16,7 @@
 	markerSelected.subscribe(async (marker: MarkerSpec) => {
 		if (marker) {
 			island = await oileainService.getIslandById(marker.id);
+			currentIsland.set(island);
 			navigator.addPopupMarkerAndZoom("selected", generateMarkerSpec(island));
 		}
 	});

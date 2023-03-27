@@ -6,6 +6,7 @@
 	import type { PageData } from "./$types";
 	import { generateMarkerSpec } from "../../../services/oileain-utils";
 	import type { MarkerSpec } from "../../../services/markers";
+	import { currentIsland } from "../../../services/stores";
 	export let data: PageData;
 
 	let mapTerrain: LeafletMap;
@@ -20,6 +21,7 @@
 
 	page.subscribe((path) => {
 		const marker = generateMarkerSpec(data.island);
+		currentIsland.set(data.island);
 		mapTerrain?.addPopupMarkerAndZoom("selected", marker);
 		mapSat?.moveTo(marker.location, 14);
 		mapContext?.moveTo(marker.location, 10);
@@ -27,6 +29,7 @@
 
 	onMount(async () => {
 		zoomTo(generateMarkerSpec(data.island));
+		currentIsland.set(data.island);
 	});
 </script>
 

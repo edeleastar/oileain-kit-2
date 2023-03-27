@@ -4,6 +4,9 @@
 	import LeafletMap from "$lib/LeafletMap.svelte";
 	import IslandCoordinates from "$lib/IslandCoordinates.svelte";
 	import IslandDescription from "$lib/IslandDescription.svelte";
+	import { currentIsland } from "../../../services/stores";
+
+	currentIsland.set(data.island);
 </script>
 
 <div class="columns">
