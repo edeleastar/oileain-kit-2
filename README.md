@@ -1,38 +1,23 @@
-# create-svelte
+# Oileain
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+The application is built using [SvelteKit](https://sveltekit.dev/), [Leaflet](https://leafletjs.com/) and [bulma](https://bulma.io/). It is running here:
 
-## Creating a project
+- <https://oileain-kit-2.netlify.app>
 
-If you're seeing this, you've probably already done this step. Congrats!
+It is an experiment in rendering maps of the Islands of Ireland on a Svelte single page application using Leaflet.js maps. The island details are derived from the book [Oileain](http://www.oileain.org/) by David Walsh. It relies the API hosted in [this repository](https://github.com/edeleastar/oileain-api), which is an immutable json version of David's book.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Several hundred markers are rendered on the map on the home page (one for each island), and clicking in these will switch to a detail view on the selected island. Another view (accessible from the header) explores the use of 2 maps on a single page; selecting a marker on on map will 'fly to' a zoomed in satellite view in a separate map on the same page.
 
 ## Building
 
-To create a production version of your app:
-
-```bash
-npm run build
+```
+npm install
 ```
 
-You can preview the production build with `npm run preview`.
+To run the application, execute the following from within the project folder:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```
+npm run dev
+```
+
+The application should be served on localhost
