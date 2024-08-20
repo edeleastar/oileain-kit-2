@@ -9,6 +9,7 @@
   import type { MarkerSpec } from "../../services/markers";
   import type { Island } from "../../services/oileain-types";
   import { oileainService } from "../../services/oileain-service";
+  import SveafletMap from "$lib/SveafletMap.svelte";
 
   let island: Island;
   let navigator: LeafletMap;
@@ -24,7 +25,8 @@
 
 <div class="columns">
   <div class="column has-text-centered">
-    <LeafletMap id="map-main" zoom={7} height={60} markerLayers={data.markerLayers} />
+    <SveafletMap zoom={7} height={60} markerLayers={data.markerLayers} />
+    <!-- <LeafletMap id="map-main" zoom={7} height={60} markerLayers={data.markerLayers} /> -->
     {#if island}
       <IslandLatLng {island} />
     {/if}
