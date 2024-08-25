@@ -24,7 +24,7 @@
 </script>
 
 <div class="box" style="height: {height}vh">
-  <Map options={{ center: [location.lat, location.lng], zoom: zoom }} bind:instance={map}>
+  <Map bind:instance={map} options={{ center: [location.lat, location.lng], zoom: zoom }}>
     <ControlLayers>
       <Layers {layers} />
     </ControlLayers>

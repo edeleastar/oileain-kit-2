@@ -6,10 +6,16 @@
   export let zoom = 8;
   export let height = 80;
   export let marker: MarkerSpec;
+
+  let map: any;
+
+  $: if (map) {
+    map.flyTo(marker.location, 16);
+  }
 </script>
 
 <div class="box" style="height: {height}vh">
-  <Map options={{ center: [marker.location.lat, marker.location.lng], zoom: zoom }}>
+  <Map bind:instance={map} options={{ center: [marker.location.lat, marker.location.lng], zoom: zoom }}>
     <ControlLayers>
       <Marker latLng={[marker.location.lat, marker.location.lng]}></Marker>
     </ControlLayers>

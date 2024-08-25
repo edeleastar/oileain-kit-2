@@ -11,7 +11,7 @@
 
 <div class="columns">
   <div class="column">
-    <MarkerMap marker={data.marker} zoom={16} height={40} />
+    <MarkerMap marker={data.marker} zoom={6} height={40} />
     <IslandCoordinates island={data.island} />
   </div>
   <div class="column">
