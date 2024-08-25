@@ -1,5 +1,5 @@
-import { generateMarkerSpec } from "../../../services/oileain-utils";
-import { oileainService } from "../../../services/oileain-service";
+import { generateMarkerSpec } from "$lib/model/oileain-utils";
+import { oileainService } from "$lib/model/oileain-service";
 import type { PageLoad } from "./$types";
 
 export const ssr = false;

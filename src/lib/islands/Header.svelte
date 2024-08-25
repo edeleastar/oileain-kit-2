@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { currentIsland } from "../services/stores";
+  import { currentIsland } from "../stores";
 </script>
 
 <div class="columns is-vcentered">

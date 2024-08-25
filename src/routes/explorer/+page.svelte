@@ -1,38 +1,36 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   export let data: PageData;
-  import LeafletMap from "$lib/LeafletMap.svelte";
-  import IslandLatLng from "$lib/IslandLatLng.svelte";
-  import IslandDescription from "$lib/IslandDescription.svelte";
-  import { currentIsland, markerSelected } from "../../services/stores";
-  import { generateMarkerSpec } from "../../services/oileain-utils";
-  import type { MarkerSpec } from "../../services/markers";
-  import type { Island } from "../../services/oileain-types";
-  import { oileainService } from "../../services/oileain-service";
-  import SveafletMap from "$lib/SveafletMap.svelte";
+  import IslandLatLng from "$lib/islands/IslandLatLng.svelte";
+  import IslandDescription from "$lib/islands/IslandDescription.svelte";
+  import { currentIsland, markerSelected } from "../../lib/stores";
+  import type { MarkerSpec } from "../../lib/model/markers";
+  import type { Island } from "../../lib/model/oileain-types";
+  import { oileainService } from "../../lib/model/oileain-service";
+  import LayerMap from "$lib/maps/LayerMap.svelte";
+  import MarkerMap from "$lib/maps/MarkerMap.svelte";
 
   let island: Island;
-  let navigator: LeafletMap;
 
   markerSelected.subscribe(async (marker: MarkerSpec) => {
     if (marker) {
       island = await oileainService.getIslandById(marker.id);
       currentIsland.set(island);
-      navigator.addPopupMarkerAndZoom("selected", generateMarkerSpec(island));
     }
   });
 </script>
 
 <div class="columns">
   <div class="column has-text-centered">
-    <SveafletMap zoom={7} height={60} markerLayers={data.markerLayers} />
-    <!-- <LeafletMap id="map-main" zoom={7} height={60} markerLayers={data.markerLayers} /> -->
+    <LayerMap zoom={7} height={60} layers={data.markerLayers} />
     {#if island}
       <IslandLatLng {island} />
     {/if}
   </div>
   <div class="column">
-    <LeafletMap id="map-secondary" height={30} activeLayer="Satellite" bind:this={navigator} />
+    {#if $markerSelected}
+      <MarkerMap marker={$markerSelected} zoom={16} height={40} />
+    {/if}
     {#if island}
       <IslandDescription {island} />
     {/if}

@@ -1,17 +1,17 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   export let data: PageData;
-  import LeafletMap from "$lib/LeafletMap.svelte";
-  import IslandCoordinates from "$lib/IslandCoordinates.svelte";
-  import IslandDescription from "$lib/IslandDescription.svelte";
-  import { currentIsland } from "../../../services/stores";
+  import IslandCoordinates from "$lib/islands/IslandCoordinates.svelte";
+  import IslandDescription from "$lib/islands/IslandDescription.svelte";
+  import { currentIsland } from "../../../lib/stores";
+  import MarkerMap from "$lib/maps/MarkerMap.svelte";
 
   currentIsland.set(data.island);
 </script>
 
 <div class="columns">
   <div class="column">
-    <LeafletMap id="map-main" marker={data.marker} zoom={7} height={40} />
+    <MarkerMap marker={data.marker} zoom={16} height={40} />
     <IslandCoordinates island={data.island} />
   </div>
   <div class="column">

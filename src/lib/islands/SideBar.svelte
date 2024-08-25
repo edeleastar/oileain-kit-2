@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { IslandGroup } from "../services/oileain-types";
+  import type { IslandGroup } from "../model/oileain-types";
   export let allCoasts: IslandGroup[] = [];
 </script>
 

@@ -1,12 +1,10 @@
 <script lang="ts">
-  import LeafletMap from "$lib/LeafletMap.svelte";
-  import SveafletMap from "$lib/SveafletMap.svelte";
-  import { currentIsland } from "../services/stores";
+  import LayerMap from "$lib/maps/LayerMap.svelte";
+  import { currentIsland } from "../lib/stores";
   import type { PageData } from "./$types";
   export let data: PageData;
 
   currentIsland.set(null);
 </script>
 
-<!-- <LeafletMap height={85} markerLayers={data.markerLayers} /> -->
-<SveafletMap markerLayers={data.markerLayers} />
+<LayerMap height={85} layers={data.markerLayers} />

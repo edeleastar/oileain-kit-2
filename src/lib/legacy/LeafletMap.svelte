@@ -2,8 +2,8 @@
   import { onMount } from "svelte";
   import { LatLng, type Control, type Layer, type LayerGroup, type Map as LeafletMap, type Marker } from "leaflet";
   import L from "leaflet";
-  import type { MarkerLayer, MarkerSpec } from "../services/markers";
-  import { markerSelected } from "../services/stores";
+  import type { MarkerLayer, MarkerSpec } from "../model/markers";
+  import { markerSelected } from "../stores";
 
   export let id = "home-map-id";
   export let height = 80;
@@ -72,11 +72,18 @@
       marker.bindTooltip(markerSpec.title);
       marker.addTo(group);
       markerMap.set(marker, markerSpec);
-      marker.addTo(group).on("popupopen", (event: any) => {
+      marker.addTo(group);
+      marker.on("popupopen", (event: any) => {
         const marker = event.popup._source;
         const markerSpec = markerMap.get(marker);
         markerSelected.set(markerSpec!);
       });
+
+      // marker.addTo(group).on("popupopen", (event: any) => {
+      //   const marker = event.popup._source;
+      //   const markerSpec = markerMap.get(marker);
+      //   markerSelected.set(markerSpec!);
+      // });
     });
     addLayer(markerLayer.title, group);
     control.addOverlay(group, markerLayer.title);

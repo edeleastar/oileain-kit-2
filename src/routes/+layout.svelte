@@ -1,9 +1,9 @@
 <script lang="ts">
-  import SideBar from "$lib/SideBar.svelte";
-  import Header from "../lib/Header.svelte";
+  import SideBar from "$lib/islands/SideBar.svelte";
+  import Header from "../lib/islands/Header.svelte";
   import { onMount } from "svelte";
-  import { oileainService } from "../services/oileain-service";
-  import type { IslandGroup } from "../services/oileain-types";
+  import { oileainService } from "../lib/model/oileain-service";
+  import type { IslandGroup } from "../lib/model/oileain-types";
 
   let allCoasts: IslandGroup[] = [];
   onMount(async () => {

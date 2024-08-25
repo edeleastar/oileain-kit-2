@@ -1,12 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { page } from "$app/stores";
-  import IslandDescription from "$lib/IslandDescription.svelte";
-  import LeafletMap from "$lib/LeafletMap.svelte";
+  import IslandDescription from "$lib/islands/IslandDescription.svelte";
+  import LeafletMap from "$lib/legacy/LeafletMap.svelte";
   import type { PageData } from "./$types";
-  import { generateMarkerSpec } from "../../../services/oileain-utils";
-  import type { MarkerSpec } from "../../../services/markers";
-  import { currentIsland } from "../../../services/stores";
+  import { generateMarkerSpec } from "../../../lib/model/oileain-utils";
+  import type { MarkerSpec } from "../../../lib/model/markers";
+  import { currentIsland, markerSelected } from "../../../lib/stores";
+  import { oileainService } from "../../../lib/model/oileain-service";
   export let data: PageData;
 
   let mapTerrain: LeafletMap;
@@ -30,6 +31,12 @@
   onMount(async () => {
     zoomTo(generateMarkerSpec(data.island));
     currentIsland.set(data.island);
+  });
+
+  markerSelected.subscribe(async (marker: MarkerSpec) => {
+    if (marker) {
+      let island = await oileainService.getIslandById(marker.id);
+    }
   });
 </script>
 
