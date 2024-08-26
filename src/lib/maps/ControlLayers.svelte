@@ -3,14 +3,6 @@
 
   export let defautLayer = "OpenStreetMap";
 
-  // type TileType = {
-  //   url: string;
-  //   options: any;
-  //   name: string;
-  //   checked: boolean;
-  //   layerType: "base" | "overlay" | undefined;
-  // };
-
   const tileLayers = [
     {
       name: "OpenStreetMap",
@@ -34,7 +26,11 @@
       layerType: "base"
     }
   ];
-  tileLayers[2].checked = true;
+  tileLayers.forEach((tile) => {
+    if (tile.name === defautLayer) {
+      tile.checked = true;
+    }
+  });
 </script>
 
 <ControlLayers>

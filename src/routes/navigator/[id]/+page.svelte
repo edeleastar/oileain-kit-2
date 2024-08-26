@@ -33,12 +33,12 @@
     <MarkerMap marker={$markerSelected} zoom={14} height={40} />
   </div>
   <div class="column" style="height: 45vh; overflow-y: auto">
-    <IslandDescription island={data.island} />
+    <IslandDescription island={$currentIsland} />
   </div>
 </div>
 <div class="columns">
   <div class="column">
-    <MarkerMap marker={$markerSelected} zoom={14} height={40} />
+    <MarkerMap marker={$markerSelected} defautLayer={"Satellite"} zoom={14} height={40} />
   </div>
   <div class="column">
     {#if $markerSelected}

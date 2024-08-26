@@ -9,6 +9,7 @@
   export let zoom = 8;
   export let height = 80;
   export let layers: MarkerLayer[] = [];
+  export let defautLayer = "OpenStreetMap";
 
   function onClick(event: any) {
     let markerSpec = event.popup._source.options.alt.replace(/\\"/g, '"');
@@ -25,7 +26,7 @@
 
 <div class="box" style="height: {height}vh">
   <Map bind:instance={map} options={{ center: [location.lat, location.lng], zoom: zoom }}>
-    <ControlLayers>
+    <ControlLayers {defautLayer}>
       <Layers {layers} />
     </ControlLayers>
   </Map>

@@ -6,6 +6,7 @@
   export let zoom = 8;
   export let height = 80;
   export let marker: MarkerSpec;
+  export let defautLayer = "OpenStreetMap";
 
   let map: any;
 
@@ -16,7 +17,7 @@
 
 <div class="box" style="height: {height}vh">
   <Map bind:instance={map} options={{ center: [marker.location.lat, marker.location.lng], zoom: zoom }}>
-    <ControlLayers>
+    <ControlLayers {defautLayer}>
       <Marker latLng={[marker.location.lat, marker.location.lng]}></Marker>
     </ControlLayers>
   </Map>
