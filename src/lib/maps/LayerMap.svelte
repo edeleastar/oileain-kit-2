@@ -11,7 +11,7 @@
     height?: number;
     layers?: MarkerLayer[];
     defautLayer?: string;
-    instance: any;
+    instance?: any;
   };
 
   let { location = { lat: 53.2734, lng: -7.7783203 }, zoom = 8, height = 80, layers = [], defautLayer = "OpenStreetMap", instance = $bindable() }: Props = $props();
@@ -23,7 +23,6 @@
   }
 
   $effect(() => {
-    console.log(instance);
     if (instance) {
       instance.on("popupopen", onClick);
     }

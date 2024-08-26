@@ -8,7 +8,7 @@
     height?: number;
     marker: MarkerSpec;
     defautLayer?: string;
-    instance: any;
+    instance?: any;
   };
 
   let { zoom = 8, height = 80, marker, defautLayer = "OpenStreetMap", instance = $bindable() }: Props = $props();
