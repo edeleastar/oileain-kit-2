@@ -1,7 +1,11 @@
 <script lang="ts">
   import { TileLayer, ControlLayers } from "sveaflet";
 
-  export let defautLayer = "OpenStreetMap";
+  type Props = {
+    defautLayer: string;
+  };
+
+  let { defautLayer = "OpenStreetMap" }: Props = $props();
 
   const tileLayers = [
     {

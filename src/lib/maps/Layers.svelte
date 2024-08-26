@@ -1,8 +1,12 @@
 <script lang="ts">
   import { Marker, Popup, LayerGroup } from "sveaflet";
-  import type { MarkerLayer, MarkerSpec } from "../model/markers";
+  import type { MarkerLayer } from "../model/markers";
 
-  export let layers: MarkerLayer[] = [];
+  type Props = {
+    layers: MarkerLayer[];
+  };
+
+  let { layers = [] }: Props = $props();
 </script>
 
 {#each layers as layer}

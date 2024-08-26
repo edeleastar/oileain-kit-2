@@ -5,11 +5,16 @@
   import Layers from "./Layers.svelte";
   import { markerSelected } from "$lib/stores";
 
-  export let location = { lat: 53.2734, lng: -7.7783203 };
-  export let zoom = 8;
-  export let height = 80;
-  export let layers: MarkerLayer[] = [];
-  export let defautLayer = "OpenStreetMap";
+  type Props = {
+    location?: any;
+    zoom?: number;
+    height?: number;
+    layers?: MarkerLayer[];
+    defautLayer?: string;
+    instance: any;
+  };
+
+  let { location = { lat: 53.2734, lng: -7.7783203 }, zoom = 8, height = 80, layers = [], defautLayer = "OpenStreetMap", instance = $bindable() }: Props = $props();
 
   function onClick(event: any) {
     let markerSpec = event.popup._source.options.alt.replace(/\\"/g, '"');
@@ -17,15 +22,16 @@
     markerSelected.set(markerSpec);
   }
 
-  let map: any;
-
-  $: if (map) {
-    map.on("popupopen", onClick);
-  }
+  $effect(() => {
+    console.log(instance);
+    if (instance) {
+      instance.on("popupopen", onClick);
+    }
+  });
 </script>
 
 <div class="box" style="height: {height}vh">
-  <Map bind:instance={map} options={{ center: [location.lat, location.lng], zoom: zoom }}>
+  <Map bind:instance options={{ center: [location.lat, location.lng], zoom: zoom }}>
     <ControlLayers {defautLayer}>
       <Layers {layers} />
     </ControlLayers>
