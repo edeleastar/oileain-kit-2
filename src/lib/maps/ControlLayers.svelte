@@ -3,20 +3,20 @@
 
   export let defautLayer = "OpenStreetMap";
 
-  type TileType = {
-    url: string;
-    options: any;
-    name: string;
-    checked: boolean;
-    layerType: "base" | "overlay" | undefined;
-  };
+  // type TileType = {
+  //   url: string;
+  //   options: any;
+  //   name: string;
+  //   checked: boolean;
+  //   layerType: "base" | "overlay" | undefined;
+  // };
 
-  const tileLayers: TileType[] = [
+  const tileLayers = [
     {
       name: "OpenStreetMap",
       url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
       options: { maxZoom: 19, attribution: "© OpenStreetMap" },
-      checked: true,
+      checked: false,
       layerType: "base"
     },
     {
@@ -34,6 +34,7 @@
       layerType: "base"
     }
   ];
+  tileLayers[2].checked = true;
 </script>
 
 <ControlLayers>
