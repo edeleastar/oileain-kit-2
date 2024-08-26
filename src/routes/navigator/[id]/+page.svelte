@@ -2,47 +2,35 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
-  import LeafletMap from "$lib/legacy/LeafletMap.svelte";
   import type { PageData } from "./$types";
-  import { generateMarkerSpec } from "../../../lib/model/oileain-utils";
-  import type { MarkerSpec } from "../../../lib/model/markers";
-  import { currentIsland, markerSelected } from "../../../lib/stores";
-  import { oileainService } from "../../../lib/model/oileain-service";
+  import type { MarkerSpec } from "$lib/model/markers";
+  import { currentIsland, markerSelected } from "$lib/stores";
+  import { oileainService } from "$lib/model/oileain-service";
+  import MarkerMap from "$lib/maps/MarkerMap.svelte";
+  import LayerMap from "$lib/maps/LayerMap.svelte";
   export let data: PageData;
 
-  let mapTerrain: LeafletMap;
-  let mapSat: LeafletMap;
-  let mapContext: LeafletMap;
-
-  function zoomTo(marker: MarkerSpec) {
-    mapTerrain?.addPopupMarkerAndZoom("selected", marker);
-    mapSat?.moveTo(marker.location, 14);
-    mapContext?.moveTo(marker.location, 10);
-  }
-
   page.subscribe((path) => {
-    const marker = generateMarkerSpec(data.island);
     currentIsland.set(data.island);
-    mapTerrain?.addPopupMarkerAndZoom("selected", marker);
-    mapSat?.moveTo(marker.location, 14);
-    mapContext?.moveTo(marker.location, 10);
+    markerSelected.set(data.marker);
   });
 
   onMount(async () => {
-    zoomTo(generateMarkerSpec(data.island));
     currentIsland.set(data.island);
+    markerSelected.set(data.marker);
   });
 
   markerSelected.subscribe(async (marker: MarkerSpec) => {
     if (marker) {
       let island = await oileainService.getIslandById(marker.id);
+      currentIsland.set(island);
     }
   });
 </script>
 
 <div class="columns">
   <div class="column">
-    <LeafletMap id="terrain" height={40} bind:this={mapTerrain} zoom={14} />
+    <MarkerMap marker={$markerSelected} zoom={14} height={40} />
   </div>
   <div class="column" style="height: 45vh; overflow-y: auto">
     <IslandDescription island={data.island} />
@@ -50,9 +38,11 @@
 </div>
 <div class="columns">
   <div class="column">
-    <LeafletMap id="sat" activeLayer={"Satellite"} height={40} bind:this={mapSat} zoom={14} />
+    <MarkerMap marker={$markerSelected} zoom={14} height={40} />
   </div>
   <div class="column">
-    <LeafletMap id="context" height={40} markerLayers={data.markerLayers} bind:this={mapContext} zoom={12} />
+    {#if $markerSelected}
+      <LayerMap zoom={9} height={40} location={$markerSelected.location} layers={data.markerLayers} />
+    {/if}
   </div>
 </div>
