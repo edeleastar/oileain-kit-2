@@ -3,7 +3,8 @@
   import { Map } from "sveaflet";
   import type { MarkerLayer } from "../model/markers";
   import Layers from "./Layers.svelte";
-  import { markerSelected } from "$lib/stores";
+  import { sharedIsland, sharedMarker } from "$lib/rune.svelte";
+  import { oileainService } from "$lib/model/oileain-service";
 
   type Props = {
     location?: any;
@@ -16,10 +17,12 @@
 
   let { location = { lat: 53.2734, lng: -7.7783203 }, zoom = 8, height = 80, layers = [], defautLayer = "OpenStreetMap", instance }: Props = $props();
 
-  function onClick(event: any) {
+  async function onClick(event: any) {
     let markerSpec = event.popup._source.options.alt.replace(/\\"/g, '"');
     markerSpec = JSON.parse(markerSpec);
-    markerSelected.set(markerSpec);
+    sharedMarker.value = markerSpec;
+    let island = await oileainService.getIslandById(markerSpec.id);
+    sharedIsland.value = island;
   }
 
   $effect(() => {

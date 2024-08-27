@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { MarkerSpec } from "$lib/model/markers";
+  import { sharedMarker } from "$lib/rune.svelte";
   import ControlLayers from "./ControlLayers.svelte";
   import { Map, Marker } from "sveaflet";
 
@@ -15,7 +16,7 @@
 
   $effect(() => {
     if (instance) {
-      instance.flyTo(marker.location, 16);
+      instance.flyTo(sharedMarker.value.location, 16);
     }
   });
 </script>
@@ -23,7 +24,7 @@
 <div class="box" style="height: {height}vh">
   <Map bind:instance options={{ center: [marker.location.lat, marker.location.lng], zoom: zoom }}>
     <ControlLayers {defautLayer}>
-      <Marker latLng={[marker.location.lat, marker.location.lng]}></Marker>
+      <Marker latLng={[sharedMarker.value.location.lat, sharedMarker.value.location.lng]}></Marker>
     </ControlLayers>
   </Map>
 </div>

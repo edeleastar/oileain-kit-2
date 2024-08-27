@@ -3,10 +3,7 @@
   export let data: PageData;
   import IslandCoordinates from "$lib/islands/IslandCoordinates.svelte";
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
-  import { currentIsland } from "../../../lib/stores";
   import MarkerMap from "$lib/maps/MarkerMap.svelte";
-
-  currentIsland.set(data.island);
 </script>
 
 <div class="columns">
