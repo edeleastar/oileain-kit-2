@@ -11,7 +11,7 @@
     instance?: any;
   };
 
-  let { zoom = 8, height = 80, marker, defautLayer = "OpenStreetMap", instance = $bindable() }: Props = $props();
+  let { zoom = 8, height = 80, marker, defautLayer = "OpenStreetMap", instance }: Props = $props();
 
   $effect(() => {
     if (instance) {
