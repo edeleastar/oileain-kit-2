@@ -1,9 +1,9 @@
 <script lang="ts">
   import MapLayers from "./MapLayers.svelte";
-  import { Map } from "sveaflet";
+  import { ControlLayers, Map } from "sveaflet";
   import type { MarkerLayer } from "../model/markers";
   import CoastalMarkers from "./CoastalMarkers.svelte";
-  import { sharedIsland, sharedMarker } from "$lib/model/rune.svelte";
+  import { sharedIsland, sharedMarker } from "$lib/model/shared-state";
   import { oileainService } from "$lib/model/oileain-service";
 
   type Props = {
@@ -34,8 +34,9 @@
 
 <div class="box" style="height: {height}vh">
   <Map bind:instance options={{ center: [location.lat, location.lng], zoom: zoom }}>
-    <MapLayers {defautLayer}>
+    <ControlLayers>
+      <MapLayers {defautLayer} />
       <CoastalMarkers {markerLayers} />
-    </MapLayers>
+    </ControlLayers>
   </Map>
 </div>

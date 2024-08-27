@@ -5,7 +5,7 @@
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
   import CoastalMap from "$lib/maps/CoastalMap.svelte";
   import IslandMap from "$lib/maps/IslandMap.svelte";
-  import { sharedIsland, sharedMarker } from "$lib/model/rune.svelte";
+  import { sharedIsland, sharedMarker } from "$lib/model/shared-state";
   import { onMount } from "svelte";
 
   onMount(async () => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sharedIsland } from "$lib/model/rune.svelte";
+  import { sharedIsland } from "$lib/model/shared-state";
   import Icon from "@iconify/svelte";
 </script>
 

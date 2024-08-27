@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Island } from "../model/oileain-types";
-  import { sharedIsland } from "$lib/model/rune.svelte";
+  import { sharedIsland } from "$lib/model/shared-state";
   export let island: Island;
 </script>
 

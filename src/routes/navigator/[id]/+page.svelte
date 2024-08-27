@@ -5,7 +5,7 @@
   import type { PageData } from "./$types";
   import IslandMap from "$lib/maps/IslandMap.svelte";
   import CoastalMap from "$lib/maps/CoastalMap.svelte";
-  import { sharedIsland, sharedMarker } from "$lib/model/rune.svelte";
+  import { sharedIsland, sharedMarker } from "$lib/model/shared-state";
   export let data: PageData;
 
   page.subscribe((path) => {

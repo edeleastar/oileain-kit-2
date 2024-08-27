@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TileLayer, ControlLayers } from "sveaflet";
+  import { TileLayer } from "sveaflet";
 
   type Props = {
     defautLayer: string;
@@ -37,9 +37,6 @@
   });
 </script>
 
-<ControlLayers>
-  {#each tileLayers as tile}
-    <TileLayer name={tile.name} url={tile.url} options={tile.options} checked={tile.checked} layerType={tile.layerType} />
-  {/each}
-  <slot />
-</ControlLayers>
+{#each tileLayers as tile}
+  <TileLayer name={tile.name} url={tile.url} options={tile.options} checked={tile.checked} layerType={tile.layerType} />
+{/each}
