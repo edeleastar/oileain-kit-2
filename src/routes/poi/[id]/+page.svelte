@@ -3,12 +3,12 @@
   export let data: PageData;
   import IslandCoordinates from "$lib/islands/IslandCoordinates.svelte";
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
-  import MarkerMap from "$lib/maps/MarkerMap.svelte";
+  import IslandMap from "$lib/maps/IslandMap.svelte";
 </script>
 
 <div class="columns">
   <div class="column">
-    <MarkerMap marker={data.marker} zoom={12} height={40} />
+    <IslandMap marker={data.marker} zoom={12} height={40} />
     <IslandCoordinates island={data.island} />
   </div>
   <div class="column">

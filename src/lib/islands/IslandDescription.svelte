@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Island } from "../model/oileain-types";
-
-  export let island: Island;
+  import { sharedIsland } from "$lib/model/rune.svelte";
 </script>
 
 <section class="section">
-  {@html island.description}
+  {#if sharedIsland.value}
+    {@html sharedIsland?.value?.description}
+  {:else}{/if}
 </section>

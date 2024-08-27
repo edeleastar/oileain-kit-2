@@ -3,13 +3,13 @@
   import type { MarkerLayer } from "../model/markers";
 
   type Props = {
-    layers: MarkerLayer[];
+    markerLayers: MarkerLayer[];
   };
 
-  let { layers = [] }: Props = $props();
+  let { markerLayers = [] }: Props = $props();
 </script>
 
-{#each layers as layer}
+{#each markerLayers as layer}
   <LayerGroup checked={true} name={layer.title} layerType="overlay">
     {#each layer.markerSpecs as markerSpec, i}
       <Marker latLng={[markerSpec.location.lat, markerSpec.location.lng]} options={{ alt: JSON.stringify(markerSpec) }}>

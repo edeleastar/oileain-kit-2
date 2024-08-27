@@ -1,21 +1,21 @@
 <script lang="ts">
-  import ControlLayers from "./ControlLayers.svelte";
+  import MapLayers from "./MapLayers.svelte";
   import { Map } from "sveaflet";
   import type { MarkerLayer } from "../model/markers";
-  import Layers from "./Layers.svelte";
-  import { sharedIsland, sharedMarker } from "$lib/rune.svelte";
+  import CoastalMarkers from "./CoastalMarkers.svelte";
+  import { sharedIsland, sharedMarker } from "$lib/model/rune.svelte";
   import { oileainService } from "$lib/model/oileain-service";
 
   type Props = {
     location?: any;
     zoom?: number;
     height?: number;
-    layers?: MarkerLayer[];
+    markerLayers?: MarkerLayer[];
     defautLayer?: string;
     instance?: any;
   };
 
-  let { location = { lat: 53.2734, lng: -7.7783203 }, zoom = 8, height = 80, layers = [], defautLayer = "OpenStreetMap", instance }: Props = $props();
+  let { location = { lat: 53.2734, lng: -7.7783203 }, zoom = 8, height = 80, markerLayers = [], defautLayer = "OpenStreetMap", instance }: Props = $props();
 
   async function onClick(event: any) {
     let markerSpec = event.popup._source.options.alt.replace(/\\"/g, '"');
@@ -34,8 +34,8 @@
 
 <div class="box" style="height: {height}vh">
   <Map bind:instance options={{ center: [location.lat, location.lng], zoom: zoom }}>
-    <ControlLayers {defautLayer}>
-      <Layers {layers} />
-    </ControlLayers>
+    <MapLayers {defautLayer}>
+      <CoastalMarkers {markerLayers} />
+    </MapLayers>
   </Map>
 </div>

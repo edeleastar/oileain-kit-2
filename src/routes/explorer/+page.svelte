@@ -3,9 +3,9 @@
   export let data: PageData;
   import IslandLatLng from "$lib/islands/IslandLatLng.svelte";
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
-  import LayerMap from "$lib/maps/LayerMap.svelte";
-  import MarkerMap from "$lib/maps/MarkerMap.svelte";
-  import { sharedIsland, sharedMarker } from "$lib/rune.svelte";
+  import CoastalMap from "$lib/maps/CoastalMap.svelte";
+  import IslandMap from "$lib/maps/IslandMap.svelte";
+  import { sharedIsland, sharedMarker } from "$lib/model/rune.svelte";
   import { onMount } from "svelte";
 
   onMount(async () => {
@@ -16,15 +16,11 @@
 
 <div class="columns">
   <div class="column has-text-centered">
-    <LayerMap zoom={7} height={60} layers={data.markerLayers} />
-    {#if sharedIsland.value}
-      <IslandLatLng island={sharedIsland.value} />
-    {/if}
+    <CoastalMap zoom={7} height={60} markerLayers={data.markerLayers} />
+    <IslandLatLng />
   </div>
   <div class="column">
-    {#if sharedIsland.value}
-      <MarkerMap marker={sharedMarker.value} zoom={16} height={40} />
-      <IslandDescription island={sharedIsland.value} />
-    {/if}
+    <IslandMap zoom={16} height={40} />
+    <IslandDescription />
   </div>
 </div>

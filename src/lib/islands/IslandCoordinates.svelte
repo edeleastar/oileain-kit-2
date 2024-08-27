@@ -1,22 +1,24 @@
 <script lang="ts">
   import type { Island } from "../model/oileain-types";
-
+  import { sharedIsland } from "$lib/model/rune.svelte";
   export let island: Island;
 </script>
 
 <section class="section has-text-centered">
   <h2 class="subtitle">GPS-compatible</h2>
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-    <tbody>
-      <tr>
-        <td>Latitude</td>
-        <td>{island.coordinates.geo.lat}</td>
-      </tr>
-      <tr>
-        <td>Longitude</td>
-        <td>{island.coordinates.geo.long}</td>
-      </tr>
-    </tbody>
+    {#if sharedIsland}
+      <tbody>
+        <tr>
+          <td>Latitude</td>
+          <td>{island.coordinates.geo.lat}</td>
+        </tr>
+        <tr>
+          <td>Longitude</td>
+          <td>{island.coordinates.geo.long}</td>
+        </tr>
+      </tbody>
+    {/if}
   </table>
   <h2 class="subtitle">Transverse Mercator</h2>
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
