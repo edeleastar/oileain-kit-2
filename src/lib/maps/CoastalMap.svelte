@@ -28,6 +28,7 @@
   $effect(() => {
     if (instance) {
       instance.on("popupopen", onClick);
+      instance.flyTo(location, zoom);
     }
   });
 </script>
