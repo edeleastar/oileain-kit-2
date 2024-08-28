@@ -5,7 +5,6 @@
   import IslandDescription from "$lib/islands/IslandDescription.svelte";
   import CoastalMap from "$lib/maps/CoastalMap.svelte";
   import IslandMap from "$lib/maps/IslandMap.svelte";
-  import { onMount } from "svelte";
 </script>
 
 <div class="columns">

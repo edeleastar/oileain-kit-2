@@ -27,24 +27,8 @@
     font-size: 16px;
   }
 
-  body {
-    font-family: "Inter", sans-serif;
-    line-height: 1.5;
-    min-height: 100vh;
-    font-size: 1.25rem;
-  }
-
   *:focus {
     outline: none;
-  }
-
-  body > div {
-    width: 90%;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
   }
 
   details div {
@@ -115,10 +99,5 @@
 
   a:hover {
     box-shadow: 0 3px 0 0;
-  }
-
-  code {
-    font-family: monospace;
-    font-weight: 600;
   }
 </style>
