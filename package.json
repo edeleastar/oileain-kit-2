@@ -15,6 +15,7 @@
     "@iconify/svelte": "^4.0.2",
     "@iconify/types": "^2.0.0",
     "@sveltejs/adapter-auto": "^3.2.4",
+    "@sveltejs/adapter-netlify": "^4.3.3",
     "@sveltejs/kit": "^2.5.24",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@types/eslint": "^9.6.1",
