@@ -4,8 +4,9 @@
   import { onMount } from "svelte";
   import { oileainService } from "../lib/model/oileain-service";
   import type { IslandGroup } from "../lib/model/oileain-types";
+  let { children } = $props();
+  let allCoasts: IslandGroup[] = $state([]);
 
-  let allCoasts: IslandGroup[] = [];
   onMount(async () => {
     allCoasts = await oileainService.getCoasts();
   });
@@ -15,7 +16,7 @@
 <div class="container">
   <div class="columns">
     <div class="column is-four-fifths">
-      <slot />
+      {@render children()}
     </div>
     <div class="column">
       <SideBar {allCoasts} />

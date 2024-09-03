@@ -1,6 +1,10 @@
 <script lang="ts">
   import type { IslandGroup } from "../model/oileain-types";
-  export let allCoasts: IslandGroup[] = [];
+
+  type Props = {
+    allCoasts: IslandGroup[];
+  };
+  let { allCoasts = [] }: Props = $props();
 </script>
 
 {#each allCoasts as coast}
