@@ -8,10 +8,10 @@
 
 <div class="columns">
   <div class="column">
-    <IslandMap marker={data.marker} zoom={12} height={40} />
+    <IslandMap zoom={12} height={40} />
     <IslandCoordinates island={data.island} />
   </div>
   <div class="column">
-    <IslandDescription island={data.island} />
+    <IslandDescription />
   </div>
 </div>
