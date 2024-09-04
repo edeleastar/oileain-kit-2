@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Island } from "../model/oileain-types";
   import { sharedIsland } from "$lib/model/shared-state";
 </script>
 
